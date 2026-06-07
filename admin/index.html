@@ -9,6 +9,10 @@
 
     <!-- ADMINISTRADOR DE ASPIRANTES -->
 
+    <!-- Mensaje de confirmación (se muestra al redirigir desde el evaluador) -->
+        <div id="mensajeConfirmacion" style="display: none; background: #d4edda; color: #155724; border: 1px solid #c3e6cb; padding: 15px; margin: 15px; border-radius: 5px; text-align: center; font-weight: bold;">
+        </div>
+
     <!-- Creamos una Sección donde Escogemos las tablas Solicitadas -->
         <section id="concurso" style="margin-top: 20px; border: 1px solid #ccc; padding: 15px; width: 300px;">
 
@@ -22,7 +26,7 @@
         </section>
 
     <!-- Creamos una Sección donde vamos a ver las tablas Solicitadas  -->
-        <section id="entregas" hidden style="margin-top: 20px; border: 1px solid #ccc; padding: 15px; width: auto;">
+        <section id="entregas" hidden style="margin-top: 20px; border: 1px solid #ccc; padding: 15px; margin: auto">
             
         <!-- Título donde vemos la tabla de Puntuación de cada Aspirante -->
             <h2 style="text-align: center;">Entregas del Aspirante</h2>
@@ -30,17 +34,17 @@
         <!-- Div donde Colocaremos la tabla -->
             <div>
 
-                <table style="text-align: center; width: auto;" border="1">
+                <table style="text-align: center; width: 100%;" border="1">
                     <thead> <!-- thead: Encabezado de tabla -->
                         <tr> <!-- tr: Fila de la tabla y th: Columna de la tabla -->
-                            <th>Aspirantes</th> 
-                            <th>Cedulas</th>
-                            <th>Postragrado(CO5) 35pts</th>
-                            <th>Pregrado(CO5.1) 30pts</th>
-                            <th>Producción(CO5.2) 15pts</th>
-                            <th>Meritos(CO5.3) 20pts</th>
-                            <th>Total Obtenido sobre 100pts</th>
-                            <th>Calificación Final sobre 20pts</th>
+                            <th style="margin: auto">Aspirantes</th> 
+                            <th style="margin: auto">Cedulas</th>
+                            <th style="margin: auto">Postragrado(CO5) 35pts</th>
+                            <th style="margin: auto">Pregrado(CO5.1) 30pts</th>
+                            <th style="margin: auto">Producción(CO5.2) 15pts</th>
+                            <th style="margin: auto">Meritos(CO5.3) 20pts</th>
+                            <th style="margin: auto">Total Obtenido sobre 100pts</th>
+                            <th style="margin: auto">Calificación Final sobre 20pts</th>
                         </tr>
                     </thead>
                     
@@ -66,6 +70,18 @@
 
             import Cl_cConcurso from "../dist/controllers/Cl_cConcurso.js";
             import Cl_vConcurso from "../dist/views/Cl_vConcurso.js";
+
+            // Mostrar mensaje de confirmación si viene del evaluador
+            const mensaje = sessionStorage.getItem("mensajeConcurso");
+            if (mensaje) {
+                const divMensaje = document.getElementById("mensajeConfirmacion");
+                if (divMensaje) {
+                    divMensaje.textContent = mensaje;
+                    divMensaje.style.display = "block";
+                }
+                // Limpiar para que no se muestre al recargar
+                sessionStorage.removeItem("mensajeConcurso");
+            }
 
             const vConcurso = new Cl_vConcurso();
 

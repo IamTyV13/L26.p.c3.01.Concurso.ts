@@ -42,6 +42,14 @@ export default class Cl_cAspirante {
 
         // 3. Guardar en MockAPI
             const resultado = await sAspirante.agregar(aspirante);
+
+            if (resultado.ok) {
+                // Guardar mensaje de éxito en sessionStorage para mostrarlo en el admin
+                sessionStorage.setItem("mensajeConcurso", "✅ Aspirante registrado exitosamente.");
+                // Redirigir al panel de administración
+                window.location.href = "../admin/index.html";
+            } else {
                 alert(resultado.mensaje);
+            }
         }
 }
