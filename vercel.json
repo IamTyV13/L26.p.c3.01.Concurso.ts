@@ -1,0 +1,18 @@
+
+{
+    "version": 2,
+    "routes": [
+        {
+            "src": "/",
+            "dest": "/admin/index.html"
+        },
+        {
+            "src": "/evaluador",
+            "dest": "/evaluador/index.html"
+        },
+        {
+            "src": "/dist/(.*)",
+            "dest": "/dist/$1"
+        }
+    ]
+}
